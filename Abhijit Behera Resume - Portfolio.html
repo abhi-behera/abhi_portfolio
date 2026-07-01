@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Abhijit Behera | Flutter Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0041c8",
+                        "secondary": "#5f5e5e",
+                        "surface": "#f6faff",
+                        "tertiary-fixed": "#e1e3e4",
+                        "surface-bright": "#f6faff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "outline": "#737688",
+                        "inverse-surface": "#293138",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#e9f2fb",
+                        "tertiary-container": "#666869",
+                        "background": "#f6faff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline-variant": "#c3c5d9",
+                        "surface-container-high": "#e0e9f2",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dce1ff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dbe4ed",
+                        "surface-tint": "#004dea",
+                        "surface-dim": "#d2dbe4",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-primary-fixed-variant": "#0039b3",
+                        "on-background": "#141d23",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434656",
+                        "surface-container": "#e6eff8",
+                        "on-surface": "#141d23",
+                        "surface-container-low": "#ecf5fe",
+                        "primary-container": "#0055ff",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#e3e6ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-variant": "#dbe4ed",
+                        "secondary-container": "#e5e2e1",
+                        "inverse-primary": "#b6c4ff",
+                        "tertiary": "#4e5051",
+                        "on-primary-fixed": "#001551",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "store-android": "#34a853",
+                        "store-ios": "#007aff",
+                        "store-web": "#f59e0b",
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px",
+                    },
+                    spacing: {
+                        "section-padding-mobile": "64px",
+                        "container-max": "1200px",
+                        "stack-lg": "32px",
+                        "section-padding-desktop": "120px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                    },
+                    fontFamily: {
+                        "display": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "caption": ["Hanken Grotesk"],
+                        "body-lg": ['"Source Serif 4"'],
+                        "body-md": ['"Source Serif 4"'],
+                    },
+                    fontSize: {
+                        "display": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["20px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        @media print {
+            .reveal-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+
+            nav {
+                display: none;
+            }
+
+            section {
+                padding-top: 32px !important;
+                padding-bottom: 32px !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed top-0 w-full z-50 bg-surface/80 glass-nav shadow-sm">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-[1200px] mx-auto">
+            <a class="font-headline-md text-headline-md font-bold text-on-surface" href="#">ABHIJIT BEHERA</a>
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300"
+                    href="#about">About</a>
+                <a class="font-label-md text-label-md uppercase tracking-wider text-on-secondary-fixed-variant hover:text-primary transition-colors duration-300"
+                    href="#experience">Experience</a>
+                <a class="font-label-md text-label-md uppercase tracking-wider text-on-secondary-fixed-variant hover:text-primary transition-colors duration-300"
+                    href="#skills">Skills</a>
+                <a class="font-label-md text-label-md uppercase tracking-wider text-on-secondary-fixed-variant hover:text-primary transition-colors duration-300"
+                    href="#projects">Projects</a>
+                <a class="font-label-md text-label-md uppercase tracking-wider text-on-secondary-fixed-variant hover:text-primary transition-colors duration-300"
+                    href="#contact">Contact</a>
+            </div>
+            <a href="c:\Users\nichiuser\Downloads\Resume builder\Abhijit Behera Resume - ATS Optimized.docx" download
+                class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-all duration-200">
+                Download CV
+            </a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section
+        class="pt-[160px] pb-section-padding-mobile md:pb-section-padding-desktop px-8 max-w-[1200px] mx-auto min-h-screen flex flex-col justify-center"
+        id="about">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7 reveal-on-scroll">
+                <span class="text-primary font-label-md text-label-md uppercase tracking-[0.2em] mb-4 block">Senior
+                    Software Engineer</span>
+                <h1 class="font-display text-display-mobile md:text-display mb-8 text-on-surface leading-tight">Building
+                    <br /><span class="text-primary italic">Exceptional</span> Flutter Apps.</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10">
+                    Flutter Developer with 4+ years of experience shipping cross-platform mobile applications across
+                    <strong class="text-on-surface">e-commerce, AI, fintech, EdTech, and IoT</strong> domains. Shipped
+                    8+ production apps with measurable impact &mdash; 40% user engagement increase, 25% crash reduction.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a class="bg-primary text-on-primary px-8 py-4 rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-primary-container transition-all duration-300 shadow-sm flex items-center gap-2"
+                        href="#projects">
+                        View Projects <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
+                    <a class="border-2 border-on-background text-on-background px-8 py-4 rounded-lg font-label-md text-label-md uppercase tracking-wider hover:bg-on-background hover:text-white transition-all duration-300 flex items-center gap-2"
+                        href="#contact">
+                        Let's Talk
+                    </a>
+                </div>
+            </div>
+            <div class="md:col-span-5 reveal-on-scroll delay-200">
+                <div class="relative group">
+                    <div
+                        class="absolute inset-0 bg-primary/10 rounded-2xl transform rotate-3 scale-105 transition-transform group-hover:rotate-6">
+                    </div>
+                    <div class="relative overflow-hidden rounded-2xl aspect-[4/5] bg-tertiary-fixed shadow-xl">
+                        <img class="w-full h-full object-cover" src="IMG_20251122_143256083_HDR.jpg"
+                            alt="Abhijit Behera - Flutter Developer" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EXPERIENCE SECTION ========== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container-low" id="experience">
+        <div class="max-w-[1200px] mx-auto px-8">
+            <div class="mb-16 reveal-on-scroll">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Professional Experience</h2>
+                <div class="w-20 h-1.5 bg-primary rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 gap-12 relative">
+                <!-- Timeline Line -->
+                <div
+                    class="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-outline-variant hidden md:block transform -translate-x-1/2">
+                </div>
+
+                <!-- Exp 1: Nichi (LEFT) -->
+                <div class="relative flex flex-col md:flex-row items-center md:justify-between group reveal-on-scroll">
+                    <div
+                        class="hidden md:block w-5 h-5 bg-primary rounded-full absolute left-1/2 -translate-x-1/2 z-10 border-4 border-surface group-hover:scale-125 transition-transform">
+                    </div>
+                    <div class="md:w-[45%] mb-8 md:mb-0">
+                        <div
+                            class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border-l-4 border-primary">
+                            <span class="text-primary font-label-md text-label-md block mb-2">MAY 2025 &mdash;
+                                PRESENT</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-1">Senior Software Engineer
+                            </h3>
+                            <p class="text-on-surface-variant font-body-md mb-4 italic">Nichi in Software Solution Pvt
+                                Ltd, Bengaluru</p>
+                            <ul class="space-y-2 font-body-md text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Lead
+                                    architecture of cross-platform Flutter apps in e-commerce & AI domains using Clean
+                                    Architecture and BLoC</li>
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Designed
+                                    3D rendering engine with OBJ/MTL assets, Dart Isolates & in-app HTTP server</li>
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Integrated
+                                    GMO Payment Gateway with RSA encryption for PCI-DSS & 3D Secure 2.0</li>
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Orchestrated
+                                    multi-LLM integration (ChatGPT, Claude, Gemini) with real-time streaming</li>
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Built
+                                    offline wake-word engine using Sherpa-ONNX for voice assistant activation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+
+                <!-- Exp 2: Neel Tech (RIGHT) -->
+                <div
+                    class="relative flex flex-col md:flex-row-reverse items-center md:justify-between group reveal-on-scroll">
+                    <div
+                        class="hidden md:block w-5 h-5 bg-primary rounded-full absolute left-1/2 -translate-x-1/2 z-10 border-4 border-surface group-hover:scale-125 transition-transform">
+                    </div>
+                    <div class="md:w-[45%] mb-8 md:mb-0">
+                        <div
+                            class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border-r-4 md:border-l-0 md:border-r-4 border-primary text-left md:text-right">
+                            <span class="text-primary font-label-md text-label-md block mb-2">NOV 2024 &mdash; APR
+                                2025</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-1">Software Developer</h3>
+                            <p class="text-on-surface-variant font-body-md mb-4 italic">Neel Tech Pvt Ltd, Bengaluru</p>
+                            <ul class="space-y-2 font-body-md text-on-surface-variant">
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Enhanced
+                                    iCent app's LMS with slide tracking, webview zooming & TTS audio player</li>
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Led full
+                                    keyboard accessibility for blind & visually impaired students</li>
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Platform
+                                    serving 100+ colleges with 100K+ downloads on Android, iOS & Web</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+
+                <!-- Exp 3: Finvisage (LEFT) -->
+                <div class="relative flex flex-col md:flex-row items-center md:justify-between group reveal-on-scroll">
+                    <div
+                        class="hidden md:block w-5 h-5 bg-primary rounded-full absolute left-1/2 -translate-x-1/2 z-10 border-4 border-surface group-hover:scale-125 transition-transform">
+                    </div>
+                    <div class="md:w-[45%]">
+                        <div
+                            class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border-l-4 border-primary">
+                            <span class="text-primary font-label-md text-label-md block mb-2">JUL 2024 &mdash; SEP
+                                2024</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-1">Software Developer</h3>
+                            <p class="text-on-surface-variant font-body-md mb-4 italic">Apex Financial Technology
+                                (Finvisage), Bengaluru</p>
+                            <ul class="space-y-2 font-body-md text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Developed
+                                    Financial Risk Management application for asset, trade & valuation management</li>
+                                <li class="flex items-start gap-2"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Spearheaded
+                                    API integration for data visualisation through interactive graphs & tables</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+
+                <!-- Exp 4: Asiczen (RIGHT) -->
+                <div
+                    class="relative flex flex-col md:flex-row-reverse items-center md:justify-between group reveal-on-scroll">
+                    <div
+                        class="hidden md:block w-5 h-5 bg-primary rounded-full absolute left-1/2 -translate-x-1/2 z-10 border-4 border-surface group-hover:scale-125 transition-transform">
+                    </div>
+                    <div class="md:w-[45%] mb-8 md:mb-0">
+                        <div
+                            class="bg-surface-container-lowest p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border-r-4 md:border-l-0 md:border-r-4 border-primary text-left md:text-right">
+                            <span class="text-primary font-label-md text-label-md block mb-2">APR 2022 &mdash; JUL
+                                2024</span>
+                            <h3 class="font-headline-md text-headline-md text-on-surface mb-1">Software Engineer</h3>
+                            <p class="text-on-surface-variant font-body-md mb-4 italic">Asiczen Technologies,
+                                Bhubaneswar</p>
+                            <ul class="space-y-2 font-body-md text-on-surface-variant">
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Engineered
+                                    25+ features &mdash; 40% engagement increase & 25% crash reduction</li>
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Deployed
+                                    4 IoT apps: Student Tracking, Cattle Tracking, BLE Smart Lock & Vehicle Tracking
+                                </li>
+                                <li class="flex items-start gap-2 md:flex-row-reverse"><span
+                                        class="w-1.5 h-1.5 bg-primary rounded-full mt-2.5 flex-shrink-0"></span>Led
+                                    cross-functional team delivery ahead of schedule, 15% client satisfaction increase
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SKILLS SECTION (Bento Grid) ========== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface" id="skills">
+        <div class="max-w-[1200px] mx-auto px-8">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <span
+                    class="text-primary font-label-md text-label-md uppercase tracking-wider mb-2 block">Specializations</span>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Precision Toolset</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 reveal-on-scroll">
+                <!-- Frameworks & Languages -->
+                <div class="md:col-span-2 bg-surface-container p-10 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <span class="material-symbols-outlined text-primary text-4xl mb-6">phone_iphone</span>
+                        <h3 class="font-headline-md text-headline-md mb-4">Mobile Development</h3>
+                        <p class="font-body-md text-on-surface-variant mb-8">Building high-performance cross-platform
+                            applications with Flutter, delivering seamless experiences across Android, iOS, Web, and
+                            Desktop.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">Flutter</span>
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">Dart</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">React
+                            Native</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">Swift
+                            UIKit</span>
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">Kotlin</span>
+                        <span
+                            class="px-3 py-1 bg-primary/10 text-primary rounded-lg font-label-md text-label-md">Jetpack
+                            Compose</span>
+                    </div>
+                </div>
+                <!-- Architecture -->
+                <div class="bg-surface-container-high p-10 rounded-2xl">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-6">architecture</span>
+                    <h3 class="font-headline-md text-headline-md mb-4">Architecture</h3>
+                    <ul class="space-y-3 font-label-md text-label-md uppercase tracking-wide text-on-surface-variant">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            Clean Architecture</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            BLoC / Provider</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            MVVM / MVC</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                            GetX</li>
+                    </ul>
+                </div>
+                <!-- Backend & IoT -->
+                <div class="bg-inverse-surface p-10 rounded-2xl text-inverse-on-surface">
+                    <span class="material-symbols-outlined text-primary-fixed text-4xl mb-6">cloud</span>
+                    <h3 class="font-headline-md text-headline-md mb-4">Backend & IoT</h3>
+                    <p class="font-body-md opacity-80 mb-6">Integrating complex APIs, real-time protocols, and IoT
+                        hardware.</p>
+                    <div class="flex flex-col gap-2 font-label-md text-label-md uppercase">
+                        <span>&bull; Firebase / Firestore</span>
+                        <span>&bull; REST API / OAuth2</span>
+                        <span>&bull; MQTT / WebSocket</span>
+                        <span>&bull; BLE / LoRa</span>
+                    </div>
+                </div>
+                <!-- Stats Bar -->
+                <div
+                    class="md:col-span-4 bg-primary text-on-primary p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="max-w-xl">
+                        <h3 class="font-headline-md text-headline-md mb-2">Tools & Platforms</h3>
+                        <p class="font-body-md opacity-90">Git, GitLab, Bitbucket, Android Studio, Xcode, VS Code,
+                            Postman, Swagger, Keycloak, Flutter DevTools, Jira. Deploying to Play Store, App Store, and
+                            Web across Android, iOS, macOS, Windows & Linux.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="bg-white/10 px-6 py-4 rounded-xl text-center backdrop-blur-sm">
+                            <span class="block font-headline-lg text-headline-lg">4+</span>
+                            <span class="font-label-md text-label-md uppercase">Years Exp</span>
+                        </div>
+                        <div class="bg-white/10 px-6 py-4 rounded-xl text-center backdrop-blur-sm">
+                            <span class="block font-headline-lg text-headline-lg">8+</span>
+                            <span class="font-label-md text-label-md uppercase">Apps Shipped</span>
+                        </div>
+                        <div class="bg-white/10 px-6 py-4 rounded-xl text-center backdrop-blur-sm">
+                            <span class="block font-headline-lg text-headline-lg">100K+</span>
+                            <span class="font-label-md text-label-md uppercase">Downloads</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION ========== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-bright" id="projects">
+        <div class="max-w-[1200px] mx-auto px-8">
+            <div class="flex justify-between items-end mb-16 reveal-on-scroll">
+                <div>
+                    <span class="text-primary font-label-md text-label-md uppercase tracking-wider mb-2 block">Shipped
+                        Apps</span>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface">Featured Projects</h2>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+                <!-- Project 1: Telenet AI -->
+                <div class="group reveal-on-scroll">
+                    <div class="relative overflow-hidden rounded-2xl bg-inverse-surface shadow-sm mb-6 p-8">
+                        <span class="material-symbols-outlined text-primary-fixed text-6xl mb-4">smart_toy</span>
+                        <h3 class="font-headline-md text-headline-md text-white mb-3">Telenet AI Assistant</h3>
+                        <p class="font-body-md text-inverse-on-surface/80 mb-4">Multi-LLM voice assistant orchestrating
+                            ChatGPT, Claude & Gemini with real-time audio/video streaming, offline wake-word detection,
+                            and enterprise CRM integration.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 bg-primary-fixed/15 text-primary-fixed-dim rounded-lg font-caption text-caption">WebSocket</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary-fixed/15 text-primary-fixed-dim rounded-lg font-caption text-caption">Sherpa-ONNX</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary-fixed/15 text-primary-fixed-dim rounded-lg font-caption text-caption">OAuth2</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary-fixed/15 text-primary-fixed-dim rounded-lg font-caption text-caption">Flutter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Palette Plaza -->
+                <div class="group reveal-on-scroll delay-100">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">palette</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Palette Plaza</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">E-commerce & 3D personalisation app with
+                            high-performance 3D rendering engine, Dart Isolates for UI compositing, and PCI-DSS
+                            compliant payment integration.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Clean
+                                Arch</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">BLoC</span>
+                            <span class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">3D
+                                Rendering</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">GMO
+                                Pay</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=jp.co.plazacreate.paletteplaza"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/ca/app/palette-plaza-official-app/id6747161425"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-ios/10 text-store-ios rounded-lg font-label-md text-caption hover:bg-store-ios/20 transition-colors border border-store-ios/20">
+                                <span class="material-symbols-outlined text-[16px]">phone_iphone</span> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: iCent -->
+                <div class="group reveal-on-scroll">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">school</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">iCent</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">Educational platform helping international
+                            students across 100+ colleges with 100K+ downloads. LMS features, role-based badges, TTS
+                            audio player & full keyboard accessibility.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Flutter</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Provider</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Accessibility</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.neeltech.icent" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/ca/app/icent-app/id895908660" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-ios/10 text-store-ios rounded-lg font-label-md text-caption hover:bg-store-ios/20 transition-colors border border-store-ios/20">
+                                <span class="material-symbols-outlined text-[16px]">phone_iphone</span> App Store
+                            </a>
+                            <a href="https://web.icentapp.com/" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-web/10 text-store-web rounded-lg font-label-md text-caption hover:bg-store-web/20 transition-colors border border-store-web/20">
+                                <span class="material-symbols-outlined text-[16px]">language</span> Web App
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Finvisage -->
+                <div class="group reveal-on-scroll delay-100">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">monitoring</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Finvisage</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">Financial Risk Management application for
+                            institutions to optimise asset, trade & valuation management with interactive data
+                            visualisation dashboards.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Flutter</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Provider</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">REST
+                                API</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.apexft.finvisage&pcampaignid=web_share"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: AzIkard -->
+                <div class="group reveal-on-scroll">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">location_on</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">AzIkard</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">Smart GPS tracking ID card for safety
+                            across age groups. Compact, discreet GPS device embedded within an ID card with real-time
+                            location monitoring.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Flutter</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Google
+                                Maps</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Keycloak</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.asiczen.aziKard&pcampaignid=web_share"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/us/app/azikard/id6467653877" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-ios/10 text-store-ios rounded-lg font-label-md text-caption hover:bg-store-ios/20 transition-colors border border-store-ios/20">
+                                <span class="material-symbols-outlined text-[16px]">phone_iphone</span> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: AzPetra -->
+                <div class="group reveal-on-scroll delay-100">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">pets</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">AzPetra</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">LoRa & Bluetooth cattle tracking with
+                            geofencing, route replay, and BLE buzzer search functionality for livestock management.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Flutter</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">BLE</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">LoRa</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.asiczen.pet.tracker.petra&pcampaignid=web_share"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                            <a href="https://apps.apple.com/us/app/azpetra/id1565274702" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-ios/10 text-store-ios rounded-lg font-label-md text-caption hover:bg-store-ios/20 transition-colors border border-store-ios/20">
+                                <span class="material-symbols-outlined text-[16px]">phone_iphone</span> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: AzLock -->
+                <div class="group reveal-on-scroll">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">lock</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">AzLock</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">iOS smart lock application operating IoT
+                            device via BLE with OTA firmware updates, WiFi connectivity, and fully revamped UI.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">Swift
+                                UIKit</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">BLE</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">OTA</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://apps.apple.com/in/app/azlock/id1450793893" target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-ios/10 text-store-ios rounded-lg font-label-md text-caption hover:bg-store-ios/20 transition-colors border border-store-ios/20">
+                                <span class="material-symbols-outlined text-[16px]">phone_iphone</span> App Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: Vehicle Tracking -->
+                <div class="group reveal-on-scroll delay-100">
+                    <div
+                        class="relative overflow-hidden rounded-2xl bg-surface-container shadow-sm mb-6 p-8 border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-primary text-6xl mb-4">directions_car</span>
+                        <h3 class="font-headline-md text-headline-md text-on-surface mb-3">Vehicle Tracking</h3>
+                        <p class="font-body-md text-on-surface-variant mb-4">Fleet tracking application built with React
+                            Native for real-time vehicle monitoring, management, and route optimisation.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">React
+                                Native</span>
+                            <span
+                                class="px-2.5 py-1 bg-primary/10 text-primary rounded-lg font-caption text-caption">GPS</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.asiczen&pcampaignid=web_share"
+                                target="_blank"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-store-android/10 text-store-android rounded-lg font-label-md text-caption hover:bg-store-android/20 transition-colors border border-store-android/20">
+                                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Play Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EDUCATION SECTION ========== -->
+    <section class="py-section-padding-mobile md:py-[80px] bg-surface-container-low">
+        <div class="max-w-[1200px] mx-auto px-8 reveal-on-scroll">
+            <div class="mb-12">
+                <span
+                    class="text-primary font-label-md text-label-md uppercase tracking-wider mb-2 block">Education</span>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Academic Background</h2>
+            </div>
+            <div
+                class="bg-surface-container-lowest p-8 rounded-xl shadow-sm border-l-4 border-primary flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Master of Computer Applications (MCA)
+                    </h3>
+                    <p class="text-on-surface-variant font-body-md italic">Indira Gandhi Institute of Technology, Sarang
+                    </p>
+                </div>
+                <div class="flex gap-4 items-center">
+                    <div class="bg-primary/10 px-4 py-2 rounded-lg text-center">
+                        <span class="block font-headline-md text-headline-md text-primary">8.68</span>
+                        <span class="font-caption text-caption text-on-surface-variant uppercase">CGPA</span>
+                    </div>
+                    <div class="bg-surface-container-high px-4 py-2 rounded-lg text-center">
+                        <span class="block font-label-md text-label-md text-on-surface">2019 &ndash; 2022</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop bg-inverse-surface text-inverse-on-surface"
+        id="contact">
+        <div class="max-w-[1200px] mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                <div class="reveal-on-scroll">
+                    <h2 class="font-display text-display-mobile md:text-display mb-8 text-white">Let's build <br /><span
+                            class="text-primary-fixed">something</span> remarkable.</h2>
+                    <p class="font-body-lg text-body-lg opacity-80 mb-12 max-w-md">Open to exciting Flutter
+                        opportunities. Reach out for collaborations, freelance projects, or full-time positions.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-fixed/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">mail</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-md text-label-md uppercase opacity-50">Email</span>
+                                <a class="font-headline-md text-headline-md hover:text-primary-fixed transition-colors"
+                                    href="mailto:abhibehera1297@gmail.com">abhibehera1297@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-fixed/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">phone</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-md text-label-md uppercase opacity-50">Phone</span>
+                                <a class="font-headline-md text-headline-md hover:text-primary-fixed transition-colors"
+                                    href="tel:720-585-6225">720-585-6225</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-fixed/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary-fixed">location_on</span>
+                            </div>
+                            <div>
+                                <span class="block font-label-md text-label-md uppercase opacity-50">Base</span>
+                                <span class="font-headline-md text-headline-md">Bengaluru, India</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-10 rounded-2xl shadow-xl reveal-on-scroll delay-200">
+                    <h3 class="font-headline-md text-headline-md text-on-surface mb-8">Send a Message</h3>
+                    <form class="space-y-8"
+                        onsubmit="event.preventDefault(); alert('Thank you for reaching out! I will get back to you soon.');">
+                        <div>
+                            <label
+                                class="font-label-md text-label-md text-on-surface-variant mb-2 block uppercase tracking-wider">Your
+                                Name</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary text-on-surface font-body-md transition-colors"
+                                placeholder="Your name" type="text" />
+                        </div>
+                        <div>
+                            <label
+                                class="font-label-md text-label-md text-on-surface-variant mb-2 block uppercase tracking-wider">Email
+                                Address</label>
+                            <input
+                                class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary text-on-surface font-body-md transition-colors"
+                                placeholder="your@email.com" type="email" />
+                        </div>
+                        <div>
+                            <label
+                                class="font-label-md text-label-md text-on-surface-variant mb-2 block uppercase tracking-wider">Message</label>
+                            <textarea
+                                class="w-full bg-transparent border-0 border-b-2 border-outline-variant py-3 px-0 focus:ring-0 focus:border-primary text-on-surface font-body-md transition-colors resize-none"
+                                placeholder="Tell me about your project..." rows="4"></textarea>
+                        </div>
+                        <button
+                            class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-primary-container transition-all shadow-md"
+                            type="submit">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-surface-container-low w-full py-section-padding-mobile md:py-[80px]">
+        <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-[1200px] mx-auto gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="font-headline-md text-headline-md font-bold text-on-surface">ABHIJIT BEHERA</span>
+                <p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left max-w-xs">
+                    &copy; 2025 Abhijit Behera. Flutter Developer based in Bengaluru, India.
+                </p>
+            </div>
+            <div class="flex gap-8">
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 opacity-80 hover:opacity-100"
+                    href="https://www.linkedin.com/in/-abhijit-behera" target="_blank">LinkedIn</a>
+                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300 opacity-80 hover:opacity-100"
+                    href="https://github.com/abhi-behera" target="_blank">GitHub</a>
+            </div>
+            <button
+                class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="material-symbols-outlined">arrow_upward</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Navigation Active State Tracking
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                link.classList.add('text-on-secondary-fixed-variant');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                    link.classList.remove('text-on-secondary-fixed-variant');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
